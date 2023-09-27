@@ -4,7 +4,7 @@
 // results file
 
 #define FILEPATH "results/results.csv"
-#define FIRST_LINE "hardware_id,code_id,so,reps_per_iter,level,iter,total,mean,median"
+#define FIRST_LINE "hardware_id,code_id,so,reps_per_iter,level,iter,total,mean,median,n"
 
 const int reps = 25;
 
@@ -34,6 +34,22 @@ void start_results(FILE *fstream) {
     fprintf(fstream, "%s\n", FIRST_LINE);
 }
 
-void write_results(FILE *fstream, int hardware_id, int code_id, int so, int reps_per_iter, int level, int iter, double total, double mean, double median) {
-    fprintf(fstream, "%d,%d,%d,%d,%d,%d,%lf,%lf,%lf\n", hardware_id, code_id, so, reps_per_iter, level, iter, total, mean, median);
+void write_results(FILE *fstream, int hardware_id, int code_id, int so, int reps_per_iter, int level, int iter, double total, double mean, double median, int n) {
+    fprintf(fstream, "%d,%d,%d,%d,%d,%d,%lf,%lf,%lf,%d\n", hardware_id, code_id, so, reps_per_iter, level, iter, total, mean, median, n);
+}
+
+// vector and matrix generation functions
+
+void fill_random_vector(int *v, int n) {
+    for (int i = 0; i < n; i++) {
+        v[i] = rand();
+    }
+}
+
+void fill_random_matrix(int **m, int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            m[i][j] = rand();
+        }
+    }
 }

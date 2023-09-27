@@ -12,12 +12,6 @@
 
 const int levels[] = {1, 2, 3};
 
-void fill_random(int *v, int n) {
-    for (int i = 0; i < n; i++) {
-        v[i] = rand();
-    }
-}
-
 void swap(int *v, int i, int j) {
     int tmp = v[i];
     v[i] = v[j];
@@ -60,7 +54,7 @@ int main(int argc, char *argv[]) {
     for (register int level_calc = 0; level_calc < 3; level_calc++) {
         for (register int iter = 0; iter < reps; iter++) {
             for(register int i = 0; i < 100; i++) {
-                fill_random(v, (n * levels[level_calc]));
+                fill_random_vector(v, (n * levels[level_calc]));
 
                 start = clock();
                 quicksort(v, (n * levels[level_calc]));
@@ -74,7 +68,7 @@ int main(int argc, char *argv[]) {
             double median = float_median(values, (100));
             double total = float_sum(values, (100));
 
-            write_results(fstream, HARDWARE_ID, CODE_ID, SO, 100, (level_calc+1), (iter+1), total, mean, median);
+            write_results(fstream, HARDWARE_ID, CODE_ID, SO, 100, (level_calc+1), (iter+1), total, mean, median, (n * levels[level_calc]));
         }
     }
     

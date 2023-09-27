@@ -49,7 +49,7 @@ int main(void) {
             double median = float_median(values, n);
             double total = float_sum(values, n);
 
-            write_results(fstream, HARDWARE_ID, CODE_ID, SO, n, (level_calc+1), (iter+1), total, mean, median);
+            write_results(fstream, HARDWARE_ID, CODE_ID, SO, n, (level_calc+1), (iter+1), total, mean, median, 0);
         }
     }
     fclose(fstream);

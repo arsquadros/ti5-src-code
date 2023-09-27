@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-
 #include <time.h>
 
 #include "general.c"
@@ -27,6 +25,11 @@ int **matrix_multiplication(int **m1, int **m2, int n) {
             result[i][j] = pos_result;
         }
     }
+
+    for (int i = 0; i < n; i++) {
+        free(result[i]);
+    }
+    free(result);
     return result;
 }
 
@@ -53,13 +56,13 @@ int main(int argc, char *argv[]) {
     for (register int level_calc = 0; level_calc < 3; level_calc++) {
         for (register int iter = 0; iter < reps; iter++) {
             for (register int i = 0; i < 100; i++) {
-                fill_random_matrix(m1, (n * levels[level_calc]));
-                fill_random_matrix(m2, (n * levels[level_calc]));
-                
+                fill_random_matrix(m1, ((int)((n * levels[level_calc]))));
+                fill_random_matrix(m2, ((int)((n * levels[level_calc]))));
+            
                 start = clock();
-                matrix_multiplication(m1, m2, (n * levels[level_calc]));
+                matrix_multiplication(m1, m2, ((int)((n * levels[level_calc]))));
                 end = clock();
-
+                
                 float seconds = (float)(end - start) / CLOCKS_PER_SEC;
                 values[i] = seconds;
             }
@@ -68,7 +71,7 @@ int main(int argc, char *argv[]) {
             double median = float_median(values, 100);
             double total = float_sum(values, 100);
 
-            write_results(fstream, HARDWARE_ID, CODE_ID, SO, 100, level_calc, (iter+1), total, mean, median, (n * levels[level_calc]));
+            write_results(fstream, HARDWARE_ID, CODE_ID, SO, 100, level_calc, (iter+1), total, mean, median, ((int)((n * levels[level_calc]))));
         }
     }
 

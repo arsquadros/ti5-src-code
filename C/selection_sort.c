@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-
 #include <time.h>
 
 #include "general.c"
@@ -40,7 +38,7 @@ int main(int argc, char *argv[]) {
     clock_t start, end;
 
     char *tmp = argv[1];
-    register int n = 0;
+    int n = 0;
     sscanf(argv[1], "%d", &n);
 
     srand(time(NULL));

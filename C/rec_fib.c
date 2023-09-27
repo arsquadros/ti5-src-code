@@ -27,7 +27,7 @@ long long fib(long long n) {
 int main(void) {
     FILE *fstream = fopen(FILEPATH, "w");
 
-    register int n = 50;
+    register int n = 100;
     clock_t start, end;
     
     float *values = (float *)malloc(n * sizeof(float));

@@ -10,12 +10,7 @@
 
 const float levels[] = {1.0f, 1.5f, 2.0f};
 
-int **matrix_multiplication(int **m1, int **m2, int n) {
-    int **result = (int **)malloc(n * sizeof(int *));
-    for (int i = 0; i < n; i++) {
-        result[i] = (int *)malloc(n * sizeof(int));
-    }
-
+int **matrix_multiplication(int **m1, int **m2, int **result, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             int pos_result = 0;
@@ -25,11 +20,6 @@ int **matrix_multiplication(int **m1, int **m2, int n) {
             result[i][j] = pos_result;
         }
     }
-
-    for (int i = 0; i < n; i++) {
-        free(result[i]);
-    }
-    free(result);
     return result;
 }
 
@@ -41,17 +31,18 @@ int main(int argc, char *argv[]) {
     sscanf(argv[1], "%d", &n);
 
     srand(time(NULL));
+    int **result = (int **)malloc((int)((n * levels[2])) * sizeof(int *));
     int **m1 = (int**) malloc((int)((n * levels[2])) * sizeof(int *));
     int **m2 = (int**) malloc((int)((n * levels[2])) * sizeof(int *));
     for (int i = 0; i < (int)((n * levels[2])); i++) {
         m1[i] = (int*) malloc((int)((n * levels[2])) * sizeof(int));
         m2[i] = (int*) malloc((int)((n * levels[2])) * sizeof(int));
+        result[i] = (int *)malloc((int)((n * levels[2])) * sizeof(int));
     }
     
     clock_t start, end;
 
     start_results(fstream);
-
     float *values = (float *)malloc(100 * sizeof(float));
     for (register int level_calc = 0; level_calc < 3; level_calc++) {
         for (register int iter = 0; iter < reps; iter++) {
@@ -60,7 +51,7 @@ int main(int argc, char *argv[]) {
                 fill_random_matrix(m2, ((int)((n * levels[level_calc]))));
             
                 start = clock();
-                matrix_multiplication(m1, m2, ((int)((n * levels[level_calc]))));
+                matrix_multiplication(m1, m2, result, ((int)((n * levels[level_calc]))));
                 end = clock();
                 
                 float seconds = (float)(end - start) / CLOCKS_PER_SEC;
@@ -74,8 +65,10 @@ int main(int argc, char *argv[]) {
             write_results(fstream, HARDWARE_ID, CODE_ID, SO, 100, level_calc, (iter+1), total, mean, median, ((int)((n * levels[level_calc]))));
         }
     }
-
+    for (int i = 0; i < (int)((n * levels[2])); i++) {
+        free(m1[i]); free(m2[i]); free(result[i]);
+    }
+    free(m1); free(m2); free(result);
     fclose(fstream);
-    
     return 0;
 }

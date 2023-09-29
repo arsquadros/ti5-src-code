@@ -1,2 +1,3 @@
 *.exe
 results/results.csv
+.vscode/

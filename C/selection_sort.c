@@ -37,12 +37,11 @@ int main(int argc, char *argv[]) {
 
     clock_t start, end;
 
-    char *tmp = argv[1];
     int n = 0;
     sscanf(argv[1], "%d", &n);
 
     srand(time(NULL));
-    int *v = (int*)malloc((n * levels[2]) * sizeof(int));
+    int *v = (int *)malloc((n * levels[2]) * sizeof(int));
 
     float *values = (float *)malloc(100 * sizeof(float));
 
@@ -67,7 +66,7 @@ int main(int argc, char *argv[]) {
             write_results(fstream, HARDWARE_ID, CODE_ID, SO, 100, level_calc, (iter+1), total, mean, median, (n * levels[level_calc]));
         }
     }
-
+    free(v); free(values);
     fclose(fstream);
     return 0;
 }

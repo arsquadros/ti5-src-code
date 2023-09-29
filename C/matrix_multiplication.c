@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < (int)((n * levels[2])); i++) {
         free(m1[i]); free(m2[i]); free(result[i]);
     }
-    free(m1); free(m2); free(result);
+    free(m1); free(m2); free(result); free(values);
     fclose(fstream);
     return 0;
 }

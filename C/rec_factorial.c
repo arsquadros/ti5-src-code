@@ -59,6 +59,7 @@ int main() {
             write_results(fstream, HARDWARE_ID, CODE_ID, SO, n, (level_calc+1), (iter+1), total, mean, median, 0);
         }
     }
+    free(values);
     fclose(fstream);
     return 0;
 }

@@ -10,7 +10,7 @@
 #define HARDWARE_ID -1 // edit to your id
 #define SO -1 // edit to so's id
 
-const int levels[] = {1, 2, 3};
+const float levels[] = {1, 1.5, 2};
 
 int main(void) {
     FILE *fstream = fopen(FILEPATH, "w");
@@ -28,7 +28,7 @@ int main(void) {
         for (register int iter = 0; iter < reps; iter++) {
             for (register int i = 0; i < n; i++) {
                 counter = 0;
-                register int new_limit = limit * levels[level_calc];
+                register int new_limit = (int)(limit * levels[level_calc]);
 
                 start = clock();
                 while (counter < new_limit) {

@@ -35,7 +35,7 @@ unsigned long long factorial(unsigned long long n) {
 int main() {
     FILE *fstream = fopen(FILEPATH, "w");
 
-    register int n = 500000;
+    register int n = 5000000;
     clock_t start, end;
 
     float *values = (float *)malloc(n * sizeof(float));
@@ -43,7 +43,7 @@ int main() {
 
     for (register int level_calc = 0; level_calc < 3; level_calc++) {
         for (register int iter = 0; iter < reps; iter++) {
-            for (register int i = 0; i < n * levels[level_calc]; i++) {
+            for (register int i = 0; i < n; i++) {
                 start = clock();
                 factorial(levels[level_calc]);
                 end = clock();

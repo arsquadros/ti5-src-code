@@ -41,7 +41,7 @@ int main() {
     float *values = (float *)malloc(n * sizeof(float));
     start_results(fstream);
 
-    for (register int level_calc = 0; level_calc < 3; level_calc++) {
+    for (register int level_calc = 2; level_calc < 3; level_calc++) {
         for (register int iter = 0; iter < reps; iter++) {
             for (register int i = 0; i < n; i++) {
                 start = clock();

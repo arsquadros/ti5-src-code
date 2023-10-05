@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     float *values = (float *)malloc(100 * sizeof(float));
 
     start_results(fstream);
-    for (register int level_calc = 0; level_calc < 3; level_calc++) {
+    for (register int level_calc = 2; level_calc < 3; level_calc++) {
         for (register int iter = 0; iter < reps; iter++) {
             for(register int i = 0; i < 100; i++) {
                 fill_random_vector(v, (n * levels[level_calc]));
@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
 
                 float seconds = (float)(end - start) / CLOCKS_PER_SEC;
                 values[i] = seconds;
+                printf("seconds: %f | iter: %d | i: %d", seconds, iter, i);
             }
 
             double mean = float_mean(values, 100);

@@ -17,7 +17,7 @@ int main(void) {
 
     register int limit = 1000000000; // billion
 
-    register int n = 100;
+    register int n = 20;
     float *values = (float *)malloc(n * sizeof(float));
 
     register int counter;

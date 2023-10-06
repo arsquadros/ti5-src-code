@@ -43,12 +43,12 @@ int main(int argc, char *argv[]) {
     srand(time(NULL));
     int *v = (int *)malloc((n * levels[2]) * sizeof(int));
 
-    float *values = (float *)malloc(100 * sizeof(float));
+    float *values = (float *)malloc(20 * sizeof(float));
 
     start_results(fstream);
     for (register int level_calc = 2; level_calc < 3; level_calc++) {
         for (register int iter = 0; iter < reps; iter++) {
-            for(register int i = 0; i < 100; i++) {
+            for(register int i = 0; i < 20; i++) {
                 fill_random_vector(v, (n * levels[level_calc]));
 
                 start = clock();
@@ -60,11 +60,11 @@ int main(int argc, char *argv[]) {
                 printf("seconds: %f | iter: %d | i: %d", seconds, iter, i);
             }
 
-            double mean = float_mean(values, 100);
-            double median = float_median(values, 100);
-            double total = float_sum(values, 100);
+            double mean = float_mean(values, 20);
+            double median = float_median(values, 20);
+            double total = float_sum(values, 20);
 
-            write_results(fstream, HARDWARE_ID, CODE_ID, SO, 100, level_calc, (iter+1), total, mean, median, (n * levels[level_calc]));
+            write_results(fstream, HARDWARE_ID, CODE_ID, SO, 20, level_calc, (iter+1), total, mean, median, (n * levels[level_calc]));
         }
     }
     free(v); free(values);
